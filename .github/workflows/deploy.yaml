@@ -13,15 +13,15 @@
           - run: docker build -t bandzior/react-test -f ./client/Dockerfile.dev ./client
           - run: docker run -e CI=true bandzior/react-test npm test
      
-          - run: docker build -t bandzior/multi-client-10-14 ./client
-          - run: docker build -t bandzior/multi-nginx-10-14 ./nginx
-          - run: docker build -t bandzior/multi-server-10-14 ./server
-          - run: docker build -t bandzior/multi-worker-10-14 ./worker
+          - run: docker build -t bandzior/doggles-client-10-14 ./client
+          - run: docker build -t bandzior/doggles-nginx-10-14 ./nginx
+          - run: docker build -t bandzior/doggles-server-10-14 ./server
+          - run: docker build -t bandzior/doggles-worker-10-14 ./worker
      
-          - run: docker push bandzior/multi-client-10-14
-          - run: docker push bandzior/multi-nginx-10-14
-          - run: docker push bandzior/multi-server-10-14
-          - run: docker push bandzior/multi-worker-10-14
+          - run: docker push bandzior/doggles-client
+          - run: docker push bandzior/doggles-nginx
+          - run: docker push bandzior/doggles-server
+          - run: docker push bandzior/doggles-worker
      
           - name: Generate deployment package
             run: zip -r deploy.zip . -x '*.git*'
@@ -31,9 +31,9 @@
             with:
               aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
               aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-              application_name: multi-gh
-              environment_name: Multigh-env
-              existing_bucket_name: elasticbeanstalk-us-east-1-923445559289
-              region: us-east-1
+              application_name: doggles
+              environment_name: Doggles-env
+              existing_bucket_name: elasticbeanstalk-eu-north-1-233587995725
+              region: eu-north-1
               version_label: ${{ github.sha }}
               deployment_package: deploy.zip
