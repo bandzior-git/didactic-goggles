@@ -13,10 +13,10 @@
           - run: docker build -t bandzior/react-test -f ./client/Dockerfile.dev ./client
           - run: docker run -e CI=true bandzior/react-test npm test
      
-          - run: docker build -t bandzior/doggles-client-10-14 ./client
-          - run: docker build -t bandzior/doggles-nginx-10-14 ./nginx
-          - run: docker build -t bandzior/doggles-server-10-14 ./server
-          - run: docker build -t bandzior/doggles-worker-10-14 ./worker
+          - run: docker build -t bandzior/doggles-client ./client
+          - run: docker build -t bandzior/doggles-nginx ./nginx
+          - run: docker build -t bandzior/doggles-server ./server
+          - run: docker build -t bandzior/doggles-worker ./worker
      
           - run: docker push bandzior/doggles-client
           - run: docker push bandzior/doggles-nginx
